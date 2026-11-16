@@ -190,7 +190,7 @@ function initCinematicSignatureEngine() {
     setPen(0, 0, 0);
 
     // Initial delay for cinematic intro
-    const TOTAL_WRITING_TIME = 6800; // ms
+    const TOTAL_WRITING_TIME = 4200; // ms (snappier, more realistic executive signature speed)
     const totalLength = strokeData.reduce((acc, s) => acc + s.len, 0);
 
     let startTimestamp = null;
@@ -217,7 +217,7 @@ function initCinematicSignatureEngine() {
 
         const current = strokeData[strokeIndex];
         // Dynamic duration based on stroke length, with humanized minimum
-        const strokeDuration = Math.max(160, (current.len / totalLength) * TOTAL_WRITING_TIME);
+        const strokeDuration = Math.max(90, (current.len / totalLength) * TOTAL_WRITING_TIME);
         const elapsed = now - strokeStartTime;
         const progress = Math.min(1, elapsed / strokeDuration);
 
@@ -240,11 +240,11 @@ function initCinematicSignatureEngine() {
         } else {
           // Advance to next stroke with brief organic pen lift
           strokeIndex++;
-          // Brief pause/lift between strokes for human feel
+          // Snappy pen lift pause between strokes
           setTimeout(() => {
             strokeStartTime = performance.now();
             requestAnimationFrame(frame);
-          }, 45);
+          }, 25);
         }
       }
 
