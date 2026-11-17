@@ -4,6 +4,7 @@ test_fonts.html
 !serve.ps1
 *.html
 !index.html
+!portfolio_single.html
 *.png
 !assets/**
 reference_video.mp4
